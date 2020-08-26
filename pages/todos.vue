@@ -7,10 +7,13 @@
       </h2>
       <input @keydown.enter="handleAddTodo" v-model="title" type text name="title">
       <todo-list
-        :todos="todos"
+        :todos="displayedTodos"
         @removeTodo="handleRemoveTodo"
         @updateTodo="handleUpdateTodo"
       />
+      <nuxt-link to="/todos">全て表示</nuxt-link>
+      <nuxt-link :to="{ path: '/todos', query: { q: 'incompleted' } }">未完了のみ表示</nuxt-link>
+      <nuxt-link :to="{ path: '/todos', query: { q: 'completed' } }">完了のみ表示</nuxt-link>
     </div>
   </div>
 
@@ -23,9 +26,21 @@ import TodoList from '@/components/TodoList'
 export default {
   data() {
     return {
+      todos: [],
       title: "",
       isLoading: true,
     }
+  },
+  computed: {
+    displayedTodos() {
+      if (this.$route.query.q === 'incompleted') {
+        return this.todos.filter(todo => !todo.is_completed);
+      } else if (this.$route.query.q === 'completed') {
+        return this.todos.filter(todo => todo.is_completed);
+      } else {
+        return this.todos;
+      }
+    },
   },
   async asyncData({ app }) {
     const { data } = await app.$axios.get(`http://localhost:4001/todos`)
@@ -54,6 +69,9 @@ export default {
       this.title="";
       // TODO 画面のリロード
       // TODO postしたらフォームからcreateを実行できないように制御する
+
+      // TODOを追加したら全てのTODOを表示させる
+      this.$router.push('/todos')
     },
     async handleUpdateTodo(todo) {
       await this.$axios.patch(`http://localhost:4001/todos/${todo.id}`, todo);
