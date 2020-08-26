@@ -1,27 +1,39 @@
 <template>
   <div class="container">
-    <h2>
-      todolist
-    </h2>
-    <input @keydown.enter="handleAddTodo" v-model="title" type text name="title">
-    <todo-list
-      :todos="todos"
-    />
+    <loading-view v-if="isLoading" />
+    <div v-else>
+      <h2>
+        todolist
+      </h2>
+      <input @keydown.enter="handleAddTodo" v-model="title" type text name="title">
+      <todo-list
+        :todos="todos"
+      />
+    </div>
   </div>
+
 </template>
 
 <script>
 import TodoList from '@/components/TodoList'
+// import LoadingView from '@/components/LoadingView'
 
 export default {
   data() {
     return {
       title: "",
+      isLoading: true,
     }
   },
   async asyncData({ app }) {
     const { data } = await app.$axios.get(`http://localhost:4001/todos`)
     return { todos: data }
+  },
+  mounted() {
+    // デバック用。ロード完了処理をわざと遅延させることでローディング画面を表示させる
+    // setTimeout(() => this.isLoading = false, 300);
+
+    this.isLoading = false;
   },
   methods: {
     async handleAddTodo() {
