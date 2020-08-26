@@ -3,6 +3,7 @@
     <div v-for="todo in todos" :key="todo.id">
       <div class="container">
         <p>{{ todo.title }}</p>
+        <button @click="handleClick(todo)">削除</button>
       </div>
     </div>
   </div>
@@ -15,6 +16,11 @@ export default {
       type: Array
     }
   },
+  methods: {
+    handleClick(todo) {
+      this.$emit("removeTodo", todo);
+    },
+  }
 }
 </script>
 

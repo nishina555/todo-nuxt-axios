@@ -8,6 +8,7 @@
       <input @keydown.enter="handleAddTodo" v-model="title" type text name="title">
       <todo-list
         :todos="todos"
+        @removeTodo="handleRemoveTodo"
       />
     </div>
   </div>
@@ -47,19 +48,22 @@ export default {
       await this.$axios.post(`http://localhost:4001/todos`, todo);
 
       // const { data } = await this.$axios.get(`http://localhost:4001/todos`);
-      const data = await this.getTodos();
 
-      this.todos = data;
+      this.todos = await this.getTodos();
       this.title="";
       // TODO 画面のリロード
       // TODO postしたらフォームからcreateを実行できないように制御する
+    },
+    async handleRemoveTodo(todo) {
+      await this.$axios.delete(`http://localhost:4001/todos/${todo.id}`);
+
+      this.todos = await this.getTodos();
     },
     async getTodos() {
       const { data } = await this.$axios.get(`http://localhost:4001/todos`);
       return data;
     }
   }
-
 }
 </script>
 
