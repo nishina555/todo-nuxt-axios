@@ -9,6 +9,7 @@
       <todo-list
         :todos="todos"
         @removeTodo="handleRemoveTodo"
+        @updateTodo="handleUpdateTodo"
       />
     </div>
   </div>
@@ -54,9 +55,12 @@ export default {
       // TODO 画面のリロード
       // TODO postしたらフォームからcreateを実行できないように制御する
     },
+    async handleUpdateTodo(todo) {
+      await this.$axios.patch(`http://localhost:4001/todos/${todo.id}`, todo);
+      this.todos = await this.getTodos();
+    },
     async handleRemoveTodo(todo) {
       await this.$axios.delete(`http://localhost:4001/todos/${todo.id}`);
-
       this.todos = await this.getTodos();
     },
     async getTodos() {

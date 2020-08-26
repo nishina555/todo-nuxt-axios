@@ -2,7 +2,10 @@
   <div>
     <div v-for="todo in todos" :key="todo.id">
       <div class="container">
-        <p>{{ todo.title }}</p>
+        <input @change="handleChange(todo)" type="checkbox" v-model="todo.is_completed">
+        <p :class="{ completed: todo.is_completed}">
+          {{ todo.title }}
+        </p>
         <button @click="handleClick(todo)">削除</button>
       </div>
     </div>
@@ -17,6 +20,10 @@ export default {
     }
   },
   methods: {
+    handleChange(todo){
+      // console.log(todo);
+      this.$emit("updateTodo", todo);
+    },
     handleClick(todo) {
       this.$emit("removeTodo", todo);
     },
@@ -28,5 +35,8 @@ export default {
 .container {
   display: flex;
   justify-content: center;
+}
+p.completed {
+  text-decoration: line-through;
 }
 </style>
