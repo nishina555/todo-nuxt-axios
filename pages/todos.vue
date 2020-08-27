@@ -5,7 +5,7 @@
       <h2>
         todolist
       </h2>
-      <input @keydown.enter="handleAddTodo" v-model="title" type text name="title">
+      <v-text-field @keydown.enter="handleAddTodo" v-model="title" type text name="title" regular></v-text-field>
       <todo-list
         :todos="displayedTodos"
         @removeTodo="handleRemoveTodo"
@@ -92,5 +92,6 @@ export default {
 <style scoped>
 .container {
   text-align: center;
+  width: 30%;
 }
 </style>
