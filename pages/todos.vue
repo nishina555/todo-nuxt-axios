@@ -11,9 +11,30 @@
         @removeTodo="handleRemoveTodo"
         @updateTodo="handleUpdateTodo"
       />
-      <nuxt-link to="/todos">全て表示</nuxt-link>
-      <nuxt-link :to="{ path: '/todos', query: { q: 'incompleted' } }">未完了のみ表示</nuxt-link>
-      <nuxt-link :to="{ path: '/todos', query: { q: 'completed' } }">完了のみ表示</nuxt-link>
+      <v-btn
+        depressed
+        small
+        nuxt
+        to="/todos"
+      >
+        全て表示
+      </v-btn>
+      <v-btn
+        depressed
+        small
+        nuxt
+        :to="{ path: '/todos', query: { q: 'incompleted' } }"
+      >
+        未完了のみ表示
+      </v-btn>
+      <v-btn
+        depressed
+        small
+        nuxt
+        :to="{ path: '/todos', query: { q: 'completed' } }"
+      >
+        完了のみ表示
+      </v-btn>
     </div>
   </div>
 
