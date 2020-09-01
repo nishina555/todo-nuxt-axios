@@ -10,6 +10,7 @@
         :todos="displayedTodos"
         @removeTodo="handleRemoveTodo"
         @updateTodo="handleUpdateTodo"
+        class="todolist"
       />
       <v-btn
         depressed
@@ -117,5 +118,8 @@ export default {
 .container {
   text-align: center;
   width: 30%;
+}
+.todolist {
+  margin-bottom: 20px;
 }
 </style>

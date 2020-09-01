@@ -2,8 +2,20 @@
   <div>
 
       <div class="container" v-for="todo in todos" :key="todo.id">
-        <v-checkbox :class="{ completed: todo.is_completed}" @change="handleChange(todo)" :label="`${ todo.title }`" v-model="todo.is_completed"></v-checkbox>
-        <v-btn depressed small @click="handleClick(todo)">削除</v-btn>
+        <v-checkbox
+          :class="{ completed: todo.is_completed}"
+          @change="handleChange(todo)"
+          :label="`${ todo.title }`"
+          v-model="todo.is_completed"
+          hide-details
+        ></v-checkbox>
+        <v-btn
+          depressed
+          small
+          @click="handleClick(todo)"
+        >
+          削除
+        </v-btn>
       </div>
 
   </div>
@@ -32,7 +44,7 @@ export default {
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   padding: 0;
 }
 .completed {
