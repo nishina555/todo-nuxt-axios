@@ -15,6 +15,7 @@
         depressed
         small
         nuxt
+        exact
         to="/todos"
       >
         全て表示
@@ -23,6 +24,7 @@
         depressed
         small
         nuxt
+        exact
         :to="{ path: '/todos', query: { q: 'incompleted' } }"
       >
         未完了のみ表示
@@ -31,6 +33,7 @@
         depressed
         small
         nuxt
+        exact
         :to="{ path: '/todos', query: { q: 'completed' } }"
       >
         完了のみ表示
