@@ -5,7 +5,15 @@
       <h2>
         todolist
       </h2>
-      <v-text-field @keydown.enter="handleAddTodo" v-model="title" type text name="title" regular></v-text-field>
+      <v-text-field
+        @keydown.enter="handleAddTodo"
+        v-model="title"
+        type
+        text
+        name="title"
+        placeholder="My todo is..."
+        regular
+      ></v-text-field>
       <todo-list
         :todos="displayedTodos"
         @removeTodo="handleRemoveTodo"
