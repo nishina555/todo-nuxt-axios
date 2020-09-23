@@ -18,3 +18,9 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+## API
+
+```bash
+$ json-server --watch ~/work/todos.json --port 4001
+```
