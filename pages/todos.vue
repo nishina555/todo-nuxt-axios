@@ -55,6 +55,7 @@
 <script>
 import TodoList from '@/components/TodoList'
 // import LoadingView from '@/components/LoadingView'
+import TodosApi from '@/plugins/axios/modules/todos'
 
 export default {
   data() {
@@ -76,13 +77,15 @@ export default {
     },
   },
   async asyncData({ app }) {
-    const { data } = await app.$axios.get(`http://localhost:4001/todos`)
-    return { todos: data }
+    // const { data } = await app.$axios.get(`http://localhost:4001/todos`)
+    // return { todos: data }
+    return await TodosApi.getAll().then((response) => {
+      return { todos: response }
+    });
   },
   mounted() {
     // デバック用。ロード完了処理をわざと遅延させることでローディング画面を表示させる
     // setTimeout(() => this.isLoading = false, 300);
-
     this.isLoading = false;
   },
   methods: {
