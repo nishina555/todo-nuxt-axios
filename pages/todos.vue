@@ -76,10 +76,10 @@ export default {
       }
     },
   },
-  async asyncData({ app }) {
+  asyncData({ app }) {
     // const { data } = await app.$axios.get(`http://localhost:4001/todos`)
     // return { todos: data }
-    return await TodosApi.getAll().then((response) => {
+    return TodosApi.getAll().then((response) => {
       return { todos: response }
     });
   },
