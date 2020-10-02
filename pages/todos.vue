@@ -97,11 +97,10 @@ export default {
         title: this.title,
         is_completed: false,
       };
-      await this.$axios.post(`http://localhost:4001/todos`, todo);
 
-      // const { data } = await this.$axios.get(`http://localhost:4001/todos`);
-
-      this.todos = await this.getTodos();
+      // await this.$axios.post(`http://localhost:4001/todos`, todo);
+      await TodosApi.post(todo);
+      this.todos = await TodosApi.getAll();
       this.title="";
       // TODO 画面のリロード
       // TODO postしたらフォームからcreateを実行できないように制御する
@@ -110,12 +109,16 @@ export default {
       this.$router.push('/todos')
     },
     async handleUpdateTodo(todo) {
-      await this.$axios.patch(`http://localhost:4001/todos/${todo.id}`, todo);
-      this.todos = await this.getTodos();
+      // await this.$axios.patch(`http://localhost:4001/todos/${todo.id}`, todo);
+      await TodosApi.patch(todo);
+      // this.todos = await this.getTodos();
+      this.todos = await TodosApi.getAll();
     },
     async handleRemoveTodo(todo) {
-      await this.$axios.delete(`http://localhost:4001/todos/${todo.id}`);
-      this.todos = await this.getTodos();
+      // await this.$axios.delete(`http://localhost:4001/todos/${todo.id}`);
+      await TodosApi.delete(todo);
+      // this.todos = await this.getTodos();
+      this.todos = await TodosApi.getAll();
     },
     async getTodos() {
       const { data } = await this.$axios.get(`http://localhost:4001/todos`);
