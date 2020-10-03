@@ -10,13 +10,25 @@ class Todos {
     }
   }
   static async post(todo) {
-    await axios.$post(`todos`, todo);
+    try {
+      await axios.$post(`todos`, todo);
+    } catch (error) {
+      throw error;
+    }
   }
   static async patch(todo) {
-    await axios.$patch(`todos/${todo.id}`, todo);
+    try {
+      await axios.$patch(`todos/${todo.id}`, todo);
+    } catch (error) {
+      throw error;
+    }
   }
   static async delete(todo) {
-    await axios.$delete(`todos/${todo.id}`, todo);
+    try {
+      await axios.$delete(`todos/${todo.id}`, todo);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
