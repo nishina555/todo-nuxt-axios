@@ -1,55 +1,58 @@
 <template>
-  <div class="container">
-    <loading-view v-if="isLoading" />
-    <div v-else>
-      <h2>
-        todolist
-      </h2>
-      <v-text-field
-        @keydown.enter="handleAddTodo"
-        v-model="title"
-        type
-        text
-        name="title"
-        placeholder="My todo is..."
-        regular
-      ></v-text-field>
-      <todo-list
-        :todos="displayedTodos"
-        @removeTodo="handleRemoveTodo"
-        @updateTodo="handleUpdateTodo"
-        class="todolist"
-      />
-      <v-btn
-        depressed
-        small
-        nuxt
-        exact
-        to="/todos"
-      >
-        全て表示
-      </v-btn>
-      <v-btn
-        depressed
-        small
-        nuxt
-        exact
-        :to="{ path: '/todos', query: { q: 'incompleted' } }"
-      >
-        未完了のみ表示
-      </v-btn>
-      <v-btn
-        depressed
-        small
-        nuxt
-        exact
-        :to="{ path: '/todos', query: { q: 'completed' } }"
-      >
-        完了のみ表示
-      </v-btn>
-    </div>
-  </div>
-
+  <v-row justify="center" align="center">
+    <v-col cols="12" sm="8" md="6">
+      <div class="text-center">
+        <loading-view v-if="isLoading" />
+        <div v-else>
+          <h2>
+            todolist
+          </h2>
+          <v-text-field
+            @keydown.enter="handleAddTodo"
+            v-model="title"
+            type
+            text
+            name="title"
+            placeholder="My todo is..."
+            regular
+          ></v-text-field>
+          <todo-list
+            :todos="displayedTodos"
+            @removeTodo="handleRemoveTodo"
+            @updateTodo="handleUpdateTodo"
+            class="todolist"
+          />
+          <v-btn
+            depressed
+            small
+            nuxt
+            exact
+            to="/todos"
+          >
+            全て表示
+          </v-btn>
+          <v-btn
+            depressed
+            small
+            nuxt
+            exact
+            :to="{ path: '/todos', query: { q: 'incompleted' } }"
+          >
+            未完了のみ表示
+          </v-btn>
+          <v-btn
+            depressed
+            small
+            nuxt
+            exact
+            :to="{ path: '/todos', query: { q: 'completed' } }"
+          >
+            完了のみ表示
+          </v-btn>
+        </div>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -135,9 +138,9 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  text-align: center;
-  width: 30%;
+.text-center {
+  width: 400px;
+  margin: 0 auto;
 }
 .todolist {
   margin-bottom: 20px;

@@ -1,23 +1,21 @@
 <template>
   <div>
-
-      <div class="container" v-for="todo in todos" :key="todo.id">
-        <v-checkbox
-          :class="{ completed: todo.is_completed}"
-          @change="handleChange(todo)"
-          :label="`${ todo.title }`"
-          v-model="todo.is_completed"
-          hide-details
-        ></v-checkbox>
-        <v-btn
-          depressed
-          small
-          @click="handleClick(todo)"
-        >
-          削除
-        </v-btn>
-      </div>
-
+    <div class="container" v-for="todo in todos" :key="todo.id">
+      <v-checkbox
+        :class="{ completed: todo.is_completed}"
+        @change="handleChange(todo)"
+        :label="`${ todo.title }`"
+        v-model="todo.is_completed"
+        hide-details
+      ></v-checkbox>
+      <v-btn
+        depressed
+        small
+        @click="handleClick(todo)"
+      >
+        削除
+      </v-btn>
+    </div>
   </div>
 </template>
 
