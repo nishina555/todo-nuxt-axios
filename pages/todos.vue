@@ -76,12 +76,18 @@ export default {
       }
     },
   },
-  asyncData({ app }) {
+  async asyncData({ app }) {
     // const { data } = await app.$axios.get(`http://localhost:4001/todos`)
     // return { todos: data }
-    return TodosApi.getAll().then((response) => {
-      return { todos: response }
-    });
+    try {
+      const data = await TodosApi.getAll()
+      return { todos: data }
+    } catch (error) {
+      throw error;
+    }
+    // return TodosApi.getAll().then((response) => {
+    //   return { todos: response }
+    // });
   },
   mounted() {
     // デバック用。ロード完了処理をわざと遅延させることでローディング画面を表示させる

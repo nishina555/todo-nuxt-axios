@@ -1,8 +1,13 @@
 import { axios } from '../index.js';
 
 class Todos {
-  static getAll() {
-    return axios.$get(`todos`);
+  static async getAll() {
+    try {
+      const response = await axios.$get(`todos`);
+      return response
+    } catch (error) {
+      throw error;
+    }
   }
   static post(todo) {
     axios.$post(`todos`, todo);
