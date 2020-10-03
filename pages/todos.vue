@@ -59,6 +59,7 @@
 import TodoList from '@/components/TodoList'
 // import LoadingView from '@/components/LoadingView'
 import TodosApi from '@/plugins/axios/modules/todos'
+import TodosApiService from '@/api/todos'
 
 export default {
   data() {
@@ -83,7 +84,8 @@ export default {
     // const { data } = await app.$axios.get(`http://localhost:4001/todos`)
     // return { todos: data }
     try {
-      const data = await TodosApi.getAll()
+      const data = await TodosApiService.getAll()
+      // const data = await TodosApi.getAll()
       return { todos: data }
     } catch (error) {
       throw error;
