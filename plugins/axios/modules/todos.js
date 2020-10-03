@@ -9,17 +9,15 @@ class Todos {
       throw error;
     }
   }
-  static post(todo) {
-    axios.$post(`todos`, todo);
+  static async post(todo) {
+    await axios.$post(`todos`, todo);
   }
-  static patch(todo) {
-    axios.$patch(`todos/${todo.id}`, todo);
+  static async patch(todo) {
+    await axios.$patch(`todos/${todo.id}`, todo);
   }
-  static delete(todo) {
-    axios.$delete(`todos/${todo.id}`, todo);
+  static async delete(todo) {
+    await axios.$delete(`todos/${todo.id}`, todo);
   }
-
-
 }
 
 export default Todos;
