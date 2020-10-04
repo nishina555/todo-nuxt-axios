@@ -110,8 +110,8 @@ export default {
       };
 
       // await this.$axios.post(`http://localhost:4001/todos`, todo);
-      await TodosApi.post(todo);
-      this.todos = await TodosApi.getAll();
+      await TodosApiService.post(todo);
+      this.todos = await TodosApiService.getAll();
       this.title="";
       // TODO 画面のリロード
       // TODO postしたらフォームからcreateを実行できないように制御する
@@ -121,15 +121,15 @@ export default {
     },
     async handleUpdateTodo(todo) {
       // await this.$axios.patch(`http://localhost:4001/todos/${todo.id}`, todo);
-      await TodosApi.patch(todo);
+      await TodosApiService.patch(todo);
       // this.todos = await this.getTodos();
-      this.todos = await TodosApi.getAll();
+      this.todos = await TodosApiService.getAll();
     },
     async handleRemoveTodo(todo) {
       // await this.$axios.delete(`http://localhost:4001/todos/${todo.id}`);
-      await TodosApi.delete(todo);
+      await TodosApiService.delete(todo);
       // this.todos = await this.getTodos();
-      this.todos = await TodosApi.getAll();
+      this.todos = await TodosApiService.getAll();
     },
     async getTodos() {
       const { data } = await this.$axios.get(`http://localhost:4001/todos`);

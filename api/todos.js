@@ -8,10 +8,34 @@ import axiosInstance from './index.js'
 // })
 
 class Todos {
-  static async getAll(){
-    const response = await axiosInstance.get(`todos`);
-    // const response = await axios.get(`http://localhost:4001/todos`);
-    return response.data;
+  static async getAll() {
+    try {
+      const response = await axiosInstance.get(`todos`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async post(todo) {
+    try {
+      await axiosInstance.post(`todos`, todo);
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async patch(todo) {
+    try {
+      await axiosInstance.patch(`todos/${todo.id}`, todo);
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async delete(todo) {
+    try {
+      await axiosInstance.delete(`todos/${todo.id}`, todo);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 export default Todos
