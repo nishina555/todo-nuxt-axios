@@ -58,7 +58,7 @@
 <script>
 import TodoList from '@/components/TodoList'
 // import LoadingView from '@/components/LoadingView'
-import TodosApi from '@/plugins/axios/modules/todos'
+// import TodosApi from '@/plugins/axios/modules/todos'
 import TodosApiService from '@/api/todos'
 
 export default {

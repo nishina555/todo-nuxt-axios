@@ -36,7 +36,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/axios/index'
+    // '@/plugins/axios/index'
   ],
   /*
   ** Auto import components
