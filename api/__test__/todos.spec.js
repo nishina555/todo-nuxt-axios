@@ -3,12 +3,12 @@ import axiosInstance from '@/api/index'
 import TodosApiService from '@/api/todos'
 import MockAdapter from 'axios-mock-adapter';
 
-describe('todos', () => {
+describe('getAll', () => {
   let mockAxios;
   beforeEach(() => {
     mockAxios = new MockAdapter(axiosInstance)
   });
-  it ('get all todos', async () => {
+  it ('取得できること', async () => {
     mockAxios.onGet('/todos').reply(200, [
       {
         id: 1,
@@ -24,45 +24,25 @@ describe('todos', () => {
     const todos = await TodosApiService.getAll();
     expect(todos.length).toBe(2);
   })
-})
+});
 
-// import { createLocalVue, mount } from '@vue/test-utils'
-// import Vuex from 'vuex'
-// import VueRouter from 'vue-router'
-
-// const localVue = createLocalVue()
-// localVue.use(VueRouter)
-
-// const routes = [{ path: '/foo', component: 'Foo' }]
-
-// const router = new VueRouter({
-//   routes
-// })
-
-// const wrapper = mount(Component, {
-//   localVue,
-//   router
-// })
-// expect(wrapper.vm.$route).toBeInstanceOf(Object)
-
-
-// const localVue = createLocalVue()
-// // localVue.use(axios)
-// localVue.use(Vuex)
-// const wrapper = mount(Component, {
-//   localVue
-// })
-// describe("axios", () => {
-//   it("is object", () => {
-//     expect(wrapper.vm.$vuex).toBeInstanceOf(Object)
-//   })
-// })
-
-// describe("updateInputValue", () => {
-//   it("call updateInputValue mutations", () => {
-//     const commit = jest.fn()
-//     const number = 3
-//     actions.updateInputValue({ commit }, number)
-//     expect(commit).toHaveBeenCalledWith("updateInputValue", { number })
-//   })
-// })
+describe('post', () => {
+  let mockAxios;
+  beforeEach(() => {
+    mockAxios = new MockAdapter(axiosInstance)
+  });
+  it ('postが実行されること', async () => {
+    const data = {
+      title: '新しくやること',
+      is_completed: false
+    }
+    mockAxios.onPost('/todos').reply(201, {
+      id: 1,
+      ...data,
+    });
+    // Todos.postでresponseをreturnすればresponseとmoackのdataを比較検証できる
+    // Todos.postは成功時voidを返す実装になっているので、postが叩かれたことだけ確認する
+    await TodosApiService.post(data);
+    expect(mockAxios.history.post.length).toBe(1);
+  });
+});

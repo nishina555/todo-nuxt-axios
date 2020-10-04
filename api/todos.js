@@ -19,6 +19,8 @@ class Todos {
   static async post(todo) {
     try {
       await axiosInstance.post(`todos`, todo);
+      // const response = await axiosInstance.post(`todos`, todo);
+      // console.log(response)
     } catch (error) {
       throw error;
     }
