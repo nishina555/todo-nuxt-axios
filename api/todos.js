@@ -34,7 +34,7 @@ class Todos {
   }
   static async delete(todo) {
     try {
-      await axiosInstance.delete(`todos/${todo.id}`, todo);
+      await axiosInstance.delete(`todos/${todo.id}`, { data: todo });
     } catch (error) {
       throw error;
     }
