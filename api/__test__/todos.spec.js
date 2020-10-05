@@ -13,12 +13,12 @@ describe('getAll', () => {
       {
         id: 1,
         title: 'Rubyを勉強する',
-        is_completed: false
+        isCompleted: false
       },
       {
         id: 2,
         title: 'AWSを勉強する',
-        is_completed: false
+        isCompleted: false
       }
     ]);
     const todos = await TodosApiService.getAll();
@@ -34,7 +34,7 @@ describe('post', () => {
   it ('postが実行されること', async () => {
     const data = {
       title: '新しくやること',
-      is_completed: false
+      isCompleted: false
     }
     mockAxios.onPost('/todos').reply(201, {
       id: 1,

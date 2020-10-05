@@ -2,10 +2,10 @@
   <div>
     <div class="container" v-for="todo in todos" :key="todo.id">
       <v-checkbox
-        :class="{ completed: todo.is_completed}"
+        :class="{ completed: todo.isCompleted}"
         @change="handleChange(todo)"
         :label="`${ todo.title }`"
-        v-model="todo.is_completed"
+        v-model="todo.isCompleted"
         hide-details
       ></v-checkbox>
       <v-btn

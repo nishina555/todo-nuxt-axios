@@ -72,9 +72,9 @@ export default {
   computed: {
     displayedTodos() {
       if (this.$route.query.q === 'incompleted') {
-        return this.todos.filter(todo => !todo.is_completed);
+        return this.todos.filter(todo => !todo.isCompleted);
       } else if (this.$route.query.q === 'completed') {
-        return this.todos.filter(todo => todo.is_completed);
+        return this.todos.filter(todo => todo.isCompleted);
       } else {
         return this.todos;
       }
@@ -106,7 +106,7 @@ export default {
 
       const todo = {
         title: this.title,
-        is_completed: false,
+        isCompleted: false,
       };
 
       // await this.$axios.post(`http://localhost:4001/todos`, todo);
